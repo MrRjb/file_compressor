@@ -11,13 +11,16 @@ label2 = PySimpleGUI.Text("Select Destination folder: ")
 input2 = PySimpleGUI.Input(tooltip="Select destionation folder")
 choose2 = PySimpleGUI.FolderBrowse("Choose", key="folder")
 
+col1 = PySimpleGUI.Column([[label1], [label2]])
+col2 = PySimpleGUI.Column([[input1], [input2]])
+col3 = PySimpleGUI.Column([[choose1], [choose2]])
+
 compress_button = PySimpleGUI.Button("Compress")
 output_label = PySimpleGUI.Text(key="output", text_color="green")
 
 window = PySimpleGUI.Window("File Compressor - Created by RJB",
                             font=("Helvetica", 15), 
-                            layout=[[label1, input1, choose1],
-                                    [label2, input2, choose2],
+                            layout=[[col1, col2, col3],
                                     [compress_button, output_label]])
 
 while True:
