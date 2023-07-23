@@ -1,6 +1,7 @@
 import PySimpleGUI
 from zip_creator import make_archive
 
+PySimpleGUI.theme("DarkPurple4")
 
 label1 = PySimpleGUI.Text("Select files to compress:")
 input1 = PySimpleGUI.Input(tooltip="Enter files to compress")
@@ -21,10 +22,13 @@ window = PySimpleGUI.Window("File Compressor - Created by RJB",
 
 while True:
     event, values = window.read()
-    filepaths = values["files"].split(";")
-    folder = values["folder"]
-    make_archive(filepaths, folder)
-    window["output"].update(value="Compression Completed Succesfully.")
+    try:
+        filepaths = values["files"].split(";")
+        folder = values["folder"]
+        make_archive(filepaths, folder)
+        window["output"].update(value="Compression Completed Succesfully.")
+    except AttributeError:
+        break
 
     if PySimpleGUI.WIN_CLOSED:
         break
